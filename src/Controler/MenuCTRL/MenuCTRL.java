@@ -6,12 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Model.MenuDOU.MenuDOU;
 import View.MenuGUI;
+import View.Dialogos.DialogoConfirmarGUI;
 public class MenuCTRL implements ActionListener{
     
     MenuDOU menuDOU = new MenuDOU();
     MenuGUI menuGUI = new MenuGUI();
+    DialogoConfirmarGUI dcgui = new DialogoConfirmarGUI();
     
-    public MenuCTRL(MenuGUI m) {
+    
+    public MenuCTRL(MenuGUI m, DialogoConfirmarGUI d) {
         // inicilizamos los eventos del la clase MenuGUI
         this.menuGUI = m;
         this.menuGUI.btnRegistra.addActionListener(this);
@@ -19,6 +22,11 @@ public class MenuCTRL implements ActionListener{
         this.menuGUI.btnBeginCocina.addActionListener(this);
         this.menuGUI.btnENDCocina.addActionListener(this);
         this.menuGUI.btnBeginBotellon.addActionListener(this);
+        
+        //evetos del dialogo
+        this.dcgui.btnValidar.addActionListener(this);
+        this.dcgui.btnCancelar.addActionListener(this);
+        
         
     }
     
