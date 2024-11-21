@@ -30,6 +30,8 @@ public class MenuCTRL implements ActionListener{
         
     }
     
+
+    
     
     
     
@@ -40,6 +42,8 @@ public class MenuCTRL implements ActionListener{
         //eveto sobre btnRegistrar
         if (e.getSource() == this.menuGUI.btnRegistra) {
             dcgui.setVisible(true);
+            
+            
             
             // validamos la comfirmacion
             
