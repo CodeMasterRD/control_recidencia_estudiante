@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import Controler.HomeCTRL.HomeCTRL;
 import View.MenuGUI;
+import View.Dialogos.DialogoConfirmarGUI;
+import Controler.MenuCTRL.MenuCTRL;
 
 
 public class Recidencia_contro {
@@ -25,6 +27,11 @@ public class Recidencia_contro {
         //intacias MenuGUI de prueba
         MenuGUI menuGUI = new MenuGUI();
         menuGUI.setVisible(true);
+        // instancia del dialogo
+        DialogoConfirmarGUI dcgui = new DialogoConfirmarGUI();
+        //Instacin del Controlador del Menu
+        MenuCTRL mctrl = new MenuCTRL(menuGUI, dcgui);
+        
         
         
         

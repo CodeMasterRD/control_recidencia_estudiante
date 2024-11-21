@@ -37,6 +37,24 @@ public class MenuCTRL implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //eveto sobre btnRegistrar
+        if (e.getSource() == this.menuGUI.btnRegistra) {
+            dcgui.setVisible(true);
+            
+            // validamos la comfirmacion
+            
+            if (e.getSource() == this.dcgui.btnValidar) {
+                System.out.println("llamando al metodo registra..");
+                
+            }
+            
+            if (e.getSource() == this.dcgui.btnCancelar) {
+                System.out.println("Operacion Cacelada..");
+                
+            }
+            
+            
+        }
         
     }
     
