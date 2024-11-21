@@ -5,4 +5,5 @@ package Model.MenuDOU;
 
 public class MenuDOU {
     
+    // metodo que registra la entrada del estudiante
 }
