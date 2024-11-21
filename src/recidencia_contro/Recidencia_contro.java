@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import Controler.Home.HomeCTRL;
+import View.MenuGUI;
 
 
 public class Recidencia_contro {
@@ -17,10 +18,14 @@ public class Recidencia_contro {
         Connection conexion = ConexionDB.getConexion();
         
         HomeStudentGUI home = new HomeStudentGUI();
-        home.setVisible(true);
+        //home.setVisible(true);
         home.setLocationRelativeTo(null);
         // le pasamos la clase home(HomeStudentGUI) al controlador
         HomeCTRL homeCTRL = new HomeCTRL(home);
+        //intacias MenuGUI de prueba
+        MenuGUI menuGUI = new MenuGUI();
+        menuGUI.setVisible(true);
+        
         
         
         
