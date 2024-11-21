@@ -6,7 +6,7 @@ import View.HomeStudentGUI;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import Controler.Home.HomeCTRL;
+import Controler.HomeCTRL.HomeCTRL;
 import View.MenuGUI;
 
 

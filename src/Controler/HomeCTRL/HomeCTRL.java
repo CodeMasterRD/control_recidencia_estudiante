@@ -1,5 +1,5 @@
 
-package Controler.Home;
+package Controler.HomeCTRL;
 
 // Clase controlado del Home
 
