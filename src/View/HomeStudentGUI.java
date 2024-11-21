@@ -35,6 +35,7 @@ public class HomeStudentGUI extends javax.swing.JFrame {
         jPContenedor.setForeground(new java.awt.Color(44, 44, 44));
         jPContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtMatricula.setFont(new java.awt.Font("Roboto Black", 1, 18)); // NOI18N
         txtMatricula.setBorder(null);
         jPContenedor.add(txtMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 340, 48));
 

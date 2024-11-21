@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import Model.ConexionDB;
 import com.mysql.cj.jdbc.CallableStatement;
-import com.mysql.cj.protocol.Resultset;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
@@ -44,14 +43,19 @@ public class HomeDOU {
                     ResultSet resultset = callableStatement.getResultSet();
                     while (resultset.next()) { 
                         int matriculaObtenida = resultset.getInt("Matricula");
+                        matricula = matriculaObtenida;
+                            return true;
                         
-                        System.out.println("Matrícula encontrada: " + matriculaObtenida);
+                        
+                        //System.out.println("Matrícula encontrada: " + matriculaObtenida);
                     }
                     
                 } catch (SQLException e) {
                     
+                    
                 }
             }else{
+                System.out.println("Consulta no ejecutada");
                 
             
             }
@@ -59,8 +63,10 @@ public class HomeDOU {
             
             
         } catch (SQLException e) {
+            return false;
         }
         return false;
+        
         
     }
     
