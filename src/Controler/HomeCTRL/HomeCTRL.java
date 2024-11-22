@@ -12,12 +12,17 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
+import View.MenuGUI;
+
 
 public class HomeCTRL implements ActionListener{
     // Instanciar la clase
     
     HomeStudentGUI vistaHome = new HomeStudentGUI();
     HomeDOU homeDOU = new HomeDOU();
+    
+    MenuGUI menuGUI = new MenuGUI();
+    
     private final JTextField matricula;
     
 
@@ -89,11 +94,14 @@ public class HomeCTRL implements ActionListener{
         }else if (e.getSource() == this.vistaHome.btnEntrar) {
             int mat = Integer.parseInt(matricula.getText()); 
             System.out.println("cobertido a int");
+            System.out.println(mat);
             try {
                 boolean validarMatricula = HomeDOU.validarMatricula(mat);
                 if (validarMatricula) {
                     //Llamar A la pantalla Menu
-                    System.out.println("llamando a Menu.");
+                    menuGUI.setVisible(true);
+                    vistaHome.dispose();
+                    
                 }
             } catch (SQLException | FileNotFoundException ex) {
                 Logger.getLogger(HomeCTRL.class.getName()).log(Level.SEVERE, null, ex);

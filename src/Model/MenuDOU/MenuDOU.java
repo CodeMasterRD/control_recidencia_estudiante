@@ -2,12 +2,13 @@
 package Model.MenuDOU;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
-
+import Model.RegistroMatricula.HomeDOU;
 // Clase que menejalos dato del MenuGUI
 
 public class MenuDOU {
     
     private String btnSeleccionado;
+    
 
     public MenuDOU() {
     }
@@ -26,6 +27,18 @@ public class MenuDOU {
     
     
     //metodo que registra la entrada del estudiante a la residencia
+    public static boolean registraEntrada() throws SQLException, FileNotFoundException{
+        try {
+            int mat = HomeDOU.getMatricula();
+            System.out.println("Registrando entrada");
+            System.out.println("La matricula a registra la entrada es: ");
+            System.out.println(mat);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+        
+    }
     
     
     
@@ -36,7 +49,7 @@ public class MenuDOU {
         switch (btnSeleccionado) {
             case "btnEntrada" -> {
                 
-                
+                return registraEntrada();
             }
             case "btnSalida" -> {
                

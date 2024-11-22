@@ -6,69 +6,72 @@ import Model.ConexionDB;
 import com.mysql.cj.jdbc.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.*;
 
 public class HomeDOU {
     //definimos los atributos
-    public int matricula;
+    public static int matricula;
 
-    public int getMatricula() {
+    public static int getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
+    public static void setMatricula(int matricula) {
+        HomeDOU.matricula = matricula;
     }
-    
     
     //metodo que validad la entrada
     // resive un parametro tipo String
     // retorna un true or false
-    public static boolean validarMatricula(int matricula) throws SQLException, FileNotFoundException{
-        
-        String SQL = "{call validarMatriculaEstudiante(?)}";
-        
-        try { 
-            Connection conexion = ConexionDB.getConexion();
-            CallableStatement callableStatement = (CallableStatement) conexion.prepareCall(SQL);
-            
-            //stablecer el parametro de entrada 
-            
+       
+   
+
+
+
+    public static boolean validarMatricula(int matricula) throws SQLException, FileNotFoundException {
+        String SQL = "{CALL validarMatriculaEstudiante(?)}";
+
+        // Conexión y llamada al procedimiento
+        try (Connection conexion = ConexionDB.getConexion();
+             CallableStatement callableStatement = (CallableStatement) conexion.prepareCall(SQL)) {
+
+            // Establecer el parámetro de entrada
             callableStatement.setInt(1, matricula);
-            
-            boolean resultada = callableStatement.execute();
-            
-            //procesar resutado
-            if(resultada){
-                try {
-                    ResultSet resultset = callableStatement.getResultSet();
-                    while (resultset.next()) { 
-                        int matriculaObtenida = resultset.getInt("Matricula");
-                        matricula = matriculaObtenida;
-                            return true;
-                        
-                        
-                        //System.out.println("Matrícula encontrada: " + matriculaObtenida);
+
+            // Ejecutar el procedimiento
+            boolean hasResultSet = callableStatement.execute();
+
+            // Procesar resultados
+            if (hasResultSet) {
+                try (ResultSet resultSet = callableStatement.getResultSet()) {
+                    if (resultSet.next()) {
+                        int matriculaObtenida = resultSet.getInt("Matricula");
+                        System.out.println("Matrícula encontrada: " + matriculaObtenida);
+                        return true;
+                    } else {
+                        System.out.println("La matrícula ingresada no es correcta.");
+                        return false;
                     }
-                    
-                } catch (SQLException e) {
-                    
-                    
                 }
-            }else{
-                System.out.println("Consulta no ejecutada");
-                
-            
+            } else {
+                System.out.println("El procedimiento no devolvió resultados.");
+                return false;
             }
-            
-            
-            
+
         } catch (SQLException e) {
+            // Manejar errores SQL personalizados
+            if ("45000".equals(e.getSQLState())) {
+                System.err.println("Error personalizado: " + e.getMessage());
+            } else {
+                System.err.println("Error SQL: " + e.getMessage());
+            }
             return false;
         }
-        return false;
-        
-        
     }
+
+
+
     
     
+   
 }

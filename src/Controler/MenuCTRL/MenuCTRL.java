@@ -61,6 +61,7 @@ public class MenuCTRL implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("Action");
         //eveto sobre btnRegistrar
         if (e.getSource() == this.menuGUI.btnRegistra) {
             menuDOU.setBtnSeleccionado("btnEntrada");
