@@ -3,6 +3,9 @@ package Model.MenuDOU;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import Model.RegistroMatricula.HomeDOU;
+import View.HomeStudentGUI;
+import View.Dialogos.DialogoValidado;
+
 // Clase que menejalos dato del MenuGUI
 
 public class MenuDOU {
@@ -33,6 +36,10 @@ public class MenuDOU {
             System.out.println("Registrando entrada");
             System.out.println("La matricula a registra la entrada es: ");
             System.out.println(mat);
+            
+            
+            
+            
             return true;
         } catch (Exception e) {
             return false;

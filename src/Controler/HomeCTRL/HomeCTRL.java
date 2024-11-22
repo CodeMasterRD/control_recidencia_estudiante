@@ -4,7 +4,6 @@ package Controler.HomeCTRL;
 // Clase controlado del Home
 
 import Controler.MenuCTRL.MenuCTRL;
-import Model.DialogosDOU.DialogoConfirmarDOU;
 import View.HomeStudentGUI;
 import Model.RegistroMatricula.HomeDOU;
 import View.Dialogos.DialogoConfirmarGUI;
@@ -16,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
 import View.MenuGUI;
+import View.Dialogos.DialogoValidado;
 
 
 public class HomeCTRL implements ActionListener{
@@ -26,6 +26,7 @@ public class HomeCTRL implements ActionListener{
     HomeDOU homeDOU = new HomeDOU();
     
     MenuGUI menuGUI = new MenuGUI();
+    DialogoValidado dv = new DialogoValidado();
     
     
     private final JTextField matricula;
@@ -105,7 +106,7 @@ public class HomeCTRL implements ActionListener{
                 if (validarMatricula) {
                     //Llamar A la pantalla Menu
                     menuGUI.setVisible(true);
-                    MenuCTRL mctrl = new MenuCTRL(menuGUI, d);
+                    MenuCTRL mctrl = new MenuCTRL(menuGUI, d, dv);
                     vistaHome.dispose();
                     
                 }

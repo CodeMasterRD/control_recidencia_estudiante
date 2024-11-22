@@ -23,6 +23,9 @@ public class HomeDOU {
     //metodo que validad la entrada
     // resive un parametro tipo String
     // retorna un true or false
+
+    public HomeDOU() {
+    }
        
    
 

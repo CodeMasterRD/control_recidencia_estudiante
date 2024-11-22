@@ -8,21 +8,25 @@ import Model.MenuDOU.MenuDOU;
 import View.MenuGUI;
 import View.Dialogos.DialogoConfirmarGUI;
 import Model.DialogosDOU.DialogoConfirmarDOU;
+import View.Dialogos.DialogoValidado;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import View.HomeStudentGUI;
 public class MenuCTRL implements ActionListener{
     
     MenuDOU menuDOU = new MenuDOU();
     MenuGUI menuGUI = new MenuGUI();
     
     DialogoConfirmarGUI dcgui = new DialogoConfirmarGUI();
+    DialogoValidado dv = new DialogoValidado();
     
     
-    public MenuCTRL(MenuGUI m, DialogoConfirmarGUI d) {
+    public MenuCTRL(MenuGUI m, DialogoConfirmarGUI d, DialogoValidado dv) {
         // inicilizamos los eventos del la clase MenuGUI
         this.menuGUI = m;
+        this.dv = dv;
         this.menuGUI.btnRegistra.addActionListener(this);
         this.menuGUI.btnSalida.addActionListener(this);
         this.menuGUI.btnBeginCocina.addActionListener(this);
@@ -33,6 +37,8 @@ public class MenuCTRL implements ActionListener{
         this.dcgui.btnValidar.addActionListener(this);
         this.dcgui.btnCancelar.addActionListener(this);
         System.out.println("MenuCTRL cargado");
+        // eveto dialogo validado
+        this.dv.btnOk.addActionListener(this);
         
         
     }
@@ -44,6 +50,9 @@ public class MenuCTRL implements ActionListener{
                     boolean resultado = menuDOU.opracineMenu();
                     if (resultado) {
                         System.out.println("Oprecionregistra exitosa.");
+                        menuGUI.dispose();
+                        HomeStudentGUI hsgui = new HomeStudentGUI();
+                        hsgui.setVisible(true);
                     }else{
                         System.out.println("la operacipn no fue exitosa");
                     }
