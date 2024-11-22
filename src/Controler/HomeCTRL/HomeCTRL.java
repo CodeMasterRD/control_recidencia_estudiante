@@ -3,8 +3,11 @@ package Controler.HomeCTRL;
 
 // Clase controlado del Home
 
+import Controler.MenuCTRL.MenuCTRL;
+import Model.DialogosDOU.DialogoConfirmarDOU;
 import View.HomeStudentGUI;
 import Model.RegistroMatricula.HomeDOU;
+import View.Dialogos.DialogoConfirmarGUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -19,9 +22,11 @@ public class HomeCTRL implements ActionListener{
     // Instanciar la clase
     
     HomeStudentGUI vistaHome = new HomeStudentGUI();
+    DialogoConfirmarGUI d = new DialogoConfirmarGUI();
     HomeDOU homeDOU = new HomeDOU();
     
     MenuGUI menuGUI = new MenuGUI();
+    
     
     private final JTextField matricula;
     
@@ -44,7 +49,7 @@ public class HomeCTRL implements ActionListener{
         
         //campon txtMatricula
         this.matricula = this.vistaHome.txtMatricula;
-        
+        System.out.println("Botones cargados");
     }
     
     
@@ -82,7 +87,7 @@ public class HomeCTRL implements ActionListener{
         }else if (e.getSource() == this.vistaHome.btn7) {
             if (!(matricula.getText().length() >= 8)) {
                     matricula.setText( matricula.getText() + "7");
-                };
+                }
         }else if (e.getSource() == this.vistaHome.btn8) {
             if (!(matricula.getText().length() >= 8)) {
                     matricula.setText( matricula.getText() + "8");
@@ -93,13 +98,14 @@ public class HomeCTRL implements ActionListener{
                 }
         }else if (e.getSource() == this.vistaHome.btnEntrar) {
             int mat = Integer.parseInt(matricula.getText()); 
-            System.out.println("cobertido a int");
+            //System.out.println("cobertido a int");
             System.out.println(mat);
             try {
                 boolean validarMatricula = HomeDOU.validarMatricula(mat);
                 if (validarMatricula) {
                     //Llamar A la pantalla Menu
                     menuGUI.setVisible(true);
+                    MenuCTRL mctrl = new MenuCTRL(menuGUI, d);
                     vistaHome.dispose();
                     
                 }

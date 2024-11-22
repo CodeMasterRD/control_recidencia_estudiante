@@ -46,6 +46,7 @@ public class HomeDOU {
                 try (ResultSet resultSet = callableStatement.getResultSet()) {
                     if (resultSet.next()) {
                         int matriculaObtenida = resultSet.getInt("Matricula");
+                        setMatricula(matriculaObtenida);
                         System.out.println("Matrícula encontrada: " + matriculaObtenida);
                         return true;
                     } else {

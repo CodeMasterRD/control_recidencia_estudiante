@@ -19,30 +19,23 @@ public class Recidencia_contro {
         ConexionDB conexionDB = new ConexionDB();
         Connection conexion = ConexionDB.getConexion();
         
-        DialogoConfirmarGUI dcgui = new DialogoConfirmarGUI();
+        //DialogoConfirmarGUI dcgui = new DialogoConfirmarGUI();
                 
 
-        MenuGUI menuGUI = new MenuGUI();
+        //MenuGUI menuGUI = new MenuGUI();
         
         HomeStudentGUI home = new HomeStudentGUI();
         
         home.setLocationRelativeTo(null);
         
-        MenuCTRL mctrl = new MenuCTRL(menuGUI, dcgui);
+        //MenuCTRL mctrl = new MenuCTRL(menuGUI, dcgui);
         // le pasamos la clase home(HomeStudentGUI) al controlador
         HomeCTRL homeCTRL = new HomeCTRL(home);
         
         
         home.setVisible(true);
        
-        
-        
-        
-        
-        
-        
-        
-        
+      
         
         
     }
