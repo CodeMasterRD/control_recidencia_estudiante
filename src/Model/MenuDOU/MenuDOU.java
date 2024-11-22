@@ -25,9 +25,13 @@ public class MenuDOU {
     }
     
     
+    //metodo que registra la entrada del estudiante a la residencia
+    
+    
+    
     // metodo que registra la entrada del estudiante
     public  boolean opracineMenu() throws  FileNotFoundException, SQLException{
-        System.out.println("");
+        
         
         switch (btnSeleccionado) {
             case "btnEntrada" -> {
