@@ -54,7 +54,7 @@ public class MenuCTRL implements ActionListener{
                         HomeStudentGUI hsgui = new HomeStudentGUI();
                         hsgui.setVisible(true);
                     }else{
-                        System.out.println("la operacipn no fue exitosa");
+                        System.out.println("");
                     }
                 } catch (FileNotFoundException | SQLException ex) {
                     Logger.getLogger(MenuCTRL.class.getName()).log(Level.SEVERE, null, ex);

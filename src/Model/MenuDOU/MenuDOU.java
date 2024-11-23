@@ -1,7 +1,9 @@
 
 package Model.MenuDOU;
 import Model.ConexionDB;
+import Model.FechaHora.Fecha;
 import Model.FechaHora.FechaHora;
+import Model.FechaHora.Hora;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import Model.RegistroMatricula.HomeDOU;
@@ -16,7 +18,10 @@ import Model.Procedure.ProcedimientoUtils;
 public class MenuDOU {
     
     private String btnSeleccionado;
-    
+    int matricula = HomeDOU.getMatricula();
+    private String fechaHora = FechaHora.getFechaHoraActual();
+    private String fecha = Fecha.getFechaActual();
+    private String hora = Hora.getHoraActual();
     
 
     public MenuDOU() {
@@ -36,9 +41,10 @@ public class MenuDOU {
     
     
     //metodo que registra la entrada del estudiante a la residencia
-    public static boolean registraEntrada(int matricula, String fechaHora, String estado, String fecha, String hora) throws SQLException, FileNotFoundException{
+    public static boolean registraEntrada(int matricula, String fechaHora, String fecha, String hora) throws SQLException, FileNotFoundException{
         //procedure 
-        String SQL_REGISTRAR_ENTRADA = "{call registraentrada(?,?,?,?,?)}";
+        String SQL_REGISTRAR_ENTRADA = "{call registraentrada(?,?,?,?)}";
+        //eje: call registraentrada(20231861, '2024-11-24 06:22:30', '2024-11-22', '06:22:30');
         try(java.sql.Connection conexion = ConexionDB.getConexion();
                 CallableStatement call = (CallableStatement) conexion.prepareCall(SQL_REGISTRAR_ENTRADA)){
             
@@ -46,10 +52,10 @@ public class MenuDOU {
             
              // Establecer parámetros del procedimiento almacenado
             call.setInt(1, matricula); // Matricula
-            call.setTimestamp(2, java.sql.Timestamp.valueOf(fechaHora)); // Fecha y Hora completa
-            call.setString(3, estado); // Estado ('Fuera' o 'Dentro')
-            //call.setDate(4, fecha); // Fecha (DATE)
-            //call.setTime(5, hora); // Hora (TIME)
+            call.setString(2,fechaHora); // Fecha y Hora completa
+            
+            call.setString(3, fecha); // Fecha (DATE)
+            call.setString(4, hora); // Hora (TIME)
             
             // Ejecutar el procedimiento
             call.execute();
@@ -61,6 +67,42 @@ public class MenuDOU {
             if ("45000".equals(e.getSQLState())) {
                 System.err.println("Error personalizado: " + e.getMessage());
             } else {
+                System.err.println("eError SQL: " + e.getMessage());
+            }
+            return false;
+        }
+       
+        
+    }
+    //metodo que registra la entrada del estudiante a la residencia
+    public static boolean registraSalida(int matricula, String fechaHora, String fecha, String hora) throws SQLException, FileNotFoundException{
+        //procedure 
+        String SQL_REGISTRAR_ENTRADA = "{call registrasalida(?,?,?,?)}";
+        //eje: call registraentrada(20231861, '2024-11-24 06:22:30', '2024-11-22', '06:22:30');
+        try(java.sql.Connection conexion = ConexionDB.getConexion();
+                CallableStatement call = (CallableStatement) conexion.prepareCall(SQL_REGISTRAR_ENTRADA)){
+            
+            // Convertir LocalDateTime a SQL Date y Time
+            
+             // Establecer parámetros del procedimiento almacenado
+            call.setInt(1, matricula); // Matricula
+            call.setString(2,fechaHora); // Fecha y Hora completa
+            
+            call.setString(3, fecha); // Fecha (DATE)
+            call.setString(4, hora); // Hora (TIME)
+            
+            // Ejecutar el procedimiento
+            call.execute();
+            System.out.println("Entrada registrada exitosamente.");
+            return true;
+            
+        } catch (SQLException e) {
+            // Manejo de excepciones SQL
+            if ("45000".equals(e.getSQLState())) {
+                System.err.println("Error personalizado: " + e.getMessage());
+                
+                
+            } else {
                 System.err.println("Error SQL: " + e.getMessage());
             }
             return false;
@@ -71,20 +113,20 @@ public class MenuDOU {
     
     
     
+    
     // metodo que registra la entrada del estudiante
     public  boolean opracineMenu() throws  FileNotFoundException, SQLException{
         
         
         switch (btnSeleccionado) {
             case "btnEntrada" -> {
-                int matricula = HomeDOU.getMatricula();
-//                String fechaHora = FechaHora.getFechaHoraActual();
-                
                
-//                return registraEntrada( );
+                              
+               return registraEntrada(matricula, fechaHora, fecha, hora);
             }
             case "btnSalida" -> {
-               
+                
+               return registraSalida(matricula, fechaHora, fecha, hora);
             }    
             
             case "btnBeginCocina" -> {
