@@ -33,6 +33,7 @@ public class MenuCTRL implements ActionListener{
         this.menuGUI.btnBeginCocina.addActionListener(this);
         this.menuGUI.btnENDCocina.addActionListener(this);
         this.menuGUI.btnBeginBotellon.addActionListener(this);
+        this.menuGUI.btnVolver.addActionListener(this);
         
         //evetos del dialogo
         this.dcgui.btnValidar.addActionListener(this);
@@ -102,6 +103,8 @@ public class MenuCTRL implements ActionListener{
             menuDOU.setBtnSeleccionado("btnBeginBotellon");
           
         }  
+        
+        
             
         // validamos la comfirmacion
             
@@ -120,7 +123,13 @@ public class MenuCTRL implements ActionListener{
                 
             }
             
-            
+            if (e.getSource() == this.menuGUI.btnVolver) {
+                        menuGUI.dispose();
+                        HomeStudentGUI hsgui = new HomeStudentGUI();
+                        HomeCTRL homeCTRL = new HomeCTRL(hsgui);
+                        hsgui.setVisible(true);
+           
+            }
             
            
         

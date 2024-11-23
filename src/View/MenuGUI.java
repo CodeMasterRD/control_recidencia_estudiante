@@ -21,6 +21,7 @@ public class MenuGUI extends javax.swing.JFrame {
         btnRegistra = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnBeginBotellon = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -79,6 +80,13 @@ public class MenuGUI extends javax.swing.JFrame {
         btnBeginBotellon.setBorderPainted(false);
         jpContenedor.add(btnBeginBotellon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 340, 70));
 
+        btnVolver.setBackground(new java.awt.Color(250, 76, 76));
+        btnVolver.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(null);
+        jpContenedor.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 130, 70));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,6 +114,7 @@ public class MenuGUI extends javax.swing.JFrame {
     public javax.swing.JButton btnENDCocina;
     public javax.swing.JButton btnRegistra;
     public javax.swing.JButton btnSalida;
+    public javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jpContenedor;
     // End of variables declaration//GEN-END:variables
