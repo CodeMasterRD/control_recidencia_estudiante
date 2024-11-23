@@ -2,6 +2,7 @@
 package Controler.MenuCTRL;
 // Clase cotroladora del menu
 
+import Controler.HomeCTRL.HomeCTRL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Model.MenuDOU.MenuDOU;
@@ -52,6 +53,7 @@ public class MenuCTRL implements ActionListener{
                         System.out.println("Oprecionregistra exitosa.");
                         menuGUI.dispose();
                         HomeStudentGUI hsgui = new HomeStudentGUI();
+                        HomeCTRL homeCTRL = new HomeCTRL(hsgui);
                         hsgui.setVisible(true);
                     }else{
                         System.out.println("");
@@ -87,24 +89,24 @@ public class MenuCTRL implements ActionListener{
         }  
         if (e.getSource() == this.menuGUI.btnBeginCocina) {
             dcgui.setVisible(true);
-            menuDOU.setBtnSeleccionado("btnSalida");
+            menuDOU.setBtnSeleccionado("btnBeginCocina");
           
         }  
         if (e.getSource() == this.menuGUI.btnENDCocina) {
             dcgui.setVisible(true);
-            menuDOU.setBtnSeleccionado("btnSalida");
+            menuDOU.setBtnSeleccionado("btnEndCocina");
           
         }  
         if (e.getSource() == this.menuGUI.btnBeginBotellon) {
             dcgui.setVisible(true);
-            menuDOU.setBtnSeleccionado("btnSalida");
+            menuDOU.setBtnSeleccionado("btnBeginBotellon");
           
         }  
             
         // validamos la comfirmacion
             
             if (e.getSource() == this.dcgui.btnValidar) {
-                System.out.println("llamando al metodo registra..");
+                //System.out.println("llamando al metodo registra..");
                 DialogoConfirmarDOU.setComfimar(true);
                 llamarOperaciones();
                 dcgui.dispose();
@@ -120,8 +122,7 @@ public class MenuCTRL implements ActionListener{
             
             
             
-            
-        
+           
         
     }
     

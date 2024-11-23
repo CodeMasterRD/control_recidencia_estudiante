@@ -7,21 +7,19 @@ import Model.FechaHora.Hora;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import Model.RegistroMatricula.HomeDOU;
-import View.HomeStudentGUI;
-import View.Dialogos.DialogoValidado;
 import com.mysql.cj.jdbc.CallableStatement;
-import com.sun.jdi.connect.spi.Connection;
-import Model.Procedure.ProcedimientoUtils;
-
+import javax.swing.*;
 // Clase que menejalos dato del MenuGUI
 
 public class MenuDOU {
     
     private String btnSeleccionado;
     int matricula = HomeDOU.getMatricula();
+    
     private String fechaHora = FechaHora.getFechaHoraActual();
     private String fecha = Fecha.getFechaActual();
     private String hora = Hora.getHoraActual();
+    
     
 
     public MenuDOU() {
@@ -66,6 +64,8 @@ public class MenuDOU {
             // Manejo de excepciones SQL
             if ("45000".equals(e.getSQLState())) {
                 System.err.println("Error personalizado: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "No puedes registrar una entrada, si ya esta dentro .", "Arvertencia", JOptionPane.INFORMATION_MESSAGE);
+                return false;
             } else {
                 System.err.println("eError SQL: " + e.getMessage());
             }
@@ -93,17 +93,20 @@ public class MenuDOU {
             
             // Ejecutar el procedimiento
             call.execute();
-            System.out.println("Entrada registrada exitosamente.");
+            System.out.println("salida registrada exitosamente.");
             return true;
             
         } catch (SQLException e) {
             // Manejo de excepciones SQL
             if ("45000".equals(e.getSQLState())) {
                 System.err.println("Error personalizado: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "No puedes registrar una salida, sii saliste .", "Arvertencia", JOptionPane.INFORMATION_MESSAGE);
+                return false;
                 
                 
             } else {
                 System.err.println("Error SQL: " + e.getMessage());
+                System.out.println("Algo salio mal ");
             }
             return false;
         }

@@ -7,6 +7,7 @@ import com.mysql.cj.jdbc.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class HomeDOU {
     //definimos los atributos
@@ -54,11 +55,12 @@ public class HomeDOU {
                         return true;
                     } else {
                         System.out.println("La matrícula ingresada no es correcta.");
+                        JOptionPane.showMessageDialog(null, "La matrícula ingresada no es correcta.", "Arvertencia", JOptionPane.INFORMATION_MESSAGE);
                         return false;
                     }
                 }
             } else {
-                System.out.println("El procedimiento no devolvió resultados.");
+                //System.out.println("El procedimiento no devolvió resultados.");
                 return false;
             }
 
@@ -66,6 +68,7 @@ public class HomeDOU {
             // Manejar errores SQL personalizados
             if ("45000".equals(e.getSQLState())) {
                 System.err.println("Error personalizado: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Arvertencia", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 System.err.println("Error SQL: " + e.getMessage());
             }
