@@ -9,6 +9,7 @@ import View.HomeStudentGUI;
 import View.Dialogos.DialogoValidado;
 import com.mysql.cj.jdbc.CallableStatement;
 import com.sun.jdi.connect.spi.Connection;
+import Model.Procedure.ProcedimientoUtils;
 
 // Clase que menejalos dato del MenuGUI
 
@@ -78,7 +79,8 @@ public class MenuDOU {
             case "btnEntrada" -> {
                 int matricula = HomeDOU.getMatricula();
 //                String fechaHora = FechaHora.getFechaHoraActual();
-//                String estado = 
+                
+               
 //                return registraEntrada( );
             }
             case "btnSalida" -> {
