@@ -15,10 +15,9 @@ public class MenuGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jpContenedor = new javax.swing.JPanel();
-        btnSalida = new javax.swing.JButton();
         btnBeginCocina = new javax.swing.JButton();
         btnENDCocina = new javax.swing.JButton();
-        btnRegistra = new javax.swing.JButton();
+        btnEntradaSalida = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnBeginBotellon = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
@@ -30,21 +29,13 @@ public class MenuGUI extends javax.swing.JFrame {
         jpContenedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnSalida.setBackground(new java.awt.Color(237, 237, 237));
-        btnSalida.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
-        btnSalida.setForeground(new java.awt.Color(30, 30, 30));
-        btnSalida.setText("Registra salida");
-        btnSalida.setBorder(null);
-        btnSalida.setBorderPainted(false);
-        jpContenedor.add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 340, 70));
-
         btnBeginCocina.setBackground(new java.awt.Color(237, 237, 237));
         btnBeginCocina.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
         btnBeginCocina.setForeground(new java.awt.Color(30, 30, 30));
         btnBeginCocina.setText("Solicitar uso cocina");
         btnBeginCocina.setBorder(null);
         btnBeginCocina.setBorderPainted(false);
-        jpContenedor.add(btnBeginCocina, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 340, 70));
+        jpContenedor.add(btnBeginCocina, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 340, 70));
 
         btnENDCocina.setBackground(new java.awt.Color(237, 237, 237));
         btnENDCocina.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
@@ -52,25 +43,20 @@ public class MenuGUI extends javax.swing.JFrame {
         btnENDCocina.setText("Terminar uso cocina");
         btnENDCocina.setBorder(null);
         btnENDCocina.setBorderPainted(false);
-        jpContenedor.add(btnENDCocina, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 340, 70));
+        jpContenedor.add(btnENDCocina, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 340, 70));
 
-        btnRegistra.setBackground(new java.awt.Color(237, 237, 237));
-        btnRegistra.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
-        btnRegistra.setForeground(new java.awt.Color(30, 30, 30));
-        btnRegistra.setText("Registra entrada");
-        btnRegistra.setBorder(null);
-        btnRegistra.setBorderPainted(false);
-        btnRegistra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistraActionPerformed(evt);
-            }
-        });
-        jpContenedor.add(btnRegistra, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 340, 70));
+        btnEntradaSalida.setBackground(new java.awt.Color(237, 237, 237));
+        btnEntradaSalida.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
+        btnEntradaSalida.setForeground(new java.awt.Color(30, 30, 30));
+        btnEntradaSalida.setText("Registra entrada");
+        btnEntradaSalida.setBorder(null);
+        btnEntradaSalida.setBorderPainted(false);
+        jpContenedor.add(btnEntradaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 340, 70));
 
         jLabel1.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Seleciona una operacion");
-        jpContenedor.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 210, 20));
+        jpContenedor.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 210, 20));
 
         btnBeginBotellon.setBackground(new java.awt.Color(237, 237, 237));
         btnBeginBotellon.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
@@ -78,7 +64,7 @@ public class MenuGUI extends javax.swing.JFrame {
         btnBeginBotellon.setText("Solicitar Botellon");
         btnBeginBotellon.setBorder(null);
         btnBeginBotellon.setBorderPainted(false);
-        jpContenedor.add(btnBeginBotellon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 340, 70));
+        jpContenedor.add(btnBeginBotellon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 340, 70));
 
         btnVolver.setBackground(new java.awt.Color(250, 76, 76));
         btnVolver.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
@@ -102,18 +88,13 @@ public class MenuGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistraActionPerformed
-
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBeginBotellon;
     public javax.swing.JButton btnBeginCocina;
     public javax.swing.JButton btnENDCocina;
-    public javax.swing.JButton btnRegistra;
-    public javax.swing.JButton btnSalida;
+    public javax.swing.JButton btnEntradaSalida;
     public javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jpContenedor;
