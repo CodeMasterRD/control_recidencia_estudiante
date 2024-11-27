@@ -3,7 +3,7 @@ package Model.DialogosDOU;
 
 
 public class DialogoConfirmarDOU {
-    private static boolean comfimar;
+    public static boolean comfimar;
 
     public static boolean isComfimar() {
         return comfimar;

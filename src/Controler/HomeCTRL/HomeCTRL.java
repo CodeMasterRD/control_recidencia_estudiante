@@ -106,7 +106,7 @@ public class HomeCTRL implements ActionListener{
                 if (validarMatricula) {
                     //Llamar A la pantalla Menu
                     menuGUI.setVisible(true);
-                    MenuCTRL mctrl = new MenuCTRL(menuGUI, d, dv);
+                    MenuCTRL mctrl = new MenuCTRL(menuGUI, d);
                     vistaHome.dispose();
                     
                 }

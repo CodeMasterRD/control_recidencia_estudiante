@@ -1,6 +1,7 @@
 
 package recidencia_contro;
 
+import Controler.DialogoCTRL.DialogoConfimarCTRL;
 import Model.ConexionDB;
 import View.HomeStudentGUI;
 import java.io.FileNotFoundException;
@@ -31,7 +32,6 @@ public class Recidencia_contro {
         //MenuCTRL mctrl = new MenuCTRL(menuGUI, dcgui);
         // le pasamos la clase home(HomeStudentGUI) al controlador
         HomeCTRL homeCTRL = new HomeCTRL(home);
-        
         
         home.setVisible(true);
        

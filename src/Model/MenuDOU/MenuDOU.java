@@ -98,7 +98,8 @@ public class MenuDOU {
             
 
             // Ejecutar el procedimiento
-            return statement.execute();
+            statement.execute();
+            return true;
             // Cerrar recursos
             
         } catch (SQLException e) {
@@ -131,7 +132,9 @@ public class MenuDOU {
             
 
             // Ejecutar el procedimiento
-            return statement.execute();
+            statement.execute();
+            return true;
+            
             // Cerrar recursos
             
         } catch (SQLException e) {
