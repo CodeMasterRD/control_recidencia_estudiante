@@ -8,15 +8,14 @@ import java.awt.event.ActionListener;
 import Model.MenuDOU.MenuDOU;
 import View.MenuGUI;
 import View.Dialogos.DialogoConfirmarGUI;
-import Model.DialogosDOU.DialogoConfirmarDOU;
 import View.Dialogos.DialogoValidado;
 import java.io.FileNotFoundException;
 import View.HomeStudentGUI;
-import Controler.DialogoCTRL.DialogoConfimarCTRL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MenuCTRL implements ActionListener{
     
-    MenuDOU menuDOU = new MenuDOU();
     MenuGUI menuGUI = new MenuGUI();
     
     DialogoConfirmarGUI dcgui = new DialogoConfirmarGUI();
@@ -32,8 +31,8 @@ public class MenuCTRL implements ActionListener{
         this.dcgui = d;
         this.menuGUI.btnEntradaSalida.addActionListener(this);
         
-        this.menuGUI.btnBeginCocina.addActionListener(this);
-        this.menuGUI.btnENDCocina.addActionListener(this);
+        this.menuGUI.btnComenzarFinalizarCocina.addActionListener(this);
+        this.menuGUI.btnComenzarFinalizarCocina.addActionListener(this);
         this.menuGUI.btnBeginBotellon.addActionListener(this);
         this.menuGUI.btnVolver.addActionListener(this);
         
@@ -43,30 +42,47 @@ public class MenuCTRL implements ActionListener{
         this.dv.btnOk.addActionListener(this);
         
         MenuDOU.getEstadoSTU();
-        cambiarNombrebtn();
+        
+        // Establecemos el estado inicial de los botones según el estado del estudiante
+        actualizarEstadoBotones();
         
         
     }
     
-    //metodo que llama los metodos del menu segun el estado del estudiante
-    public void OperacionesMenu(){
-        System.out.println("");
+     // Método que actualiza la visibilidad y el texto de los botones según el estado del estudiante
+    private void actualizarEstadoBotones() {
+        String estadoEstudiante = MenuDOU.getEstadoEstudiante(); // Obtiene el estado actual del estudiante
+
+        if ("Dentro".equals(estadoEstudiante)) {
+            this.menuGUI.btnEntradaSalida.setVisible(true);
+            this.menuGUI.btnEntradaSalida.setText("Registrar salida");
+
+            // Mostrar botones de cocina y botellón solo si está dentro
+            this.menuGUI.btnComenzarFinalizarCocina.setVisible(true);
+            
+            this.menuGUI.btnBeginBotellon.setVisible(true);
+        } else if ("Fuera".equals(estadoEstudiante)) {
+            this.menuGUI.btnEntradaSalida.setVisible(true);
+            this.menuGUI.btnEntradaSalida.setText("Registrar entrada");
+
+            // Ocultar botones de cocina y botellón si está fuera
+            this.menuGUI.btnComenzarFinalizarCocina.setVisible(false);
+            this.menuGUI.btnComenzarFinalizarCocina.setVisible(false);
+            this.menuGUI.btnBeginBotellon.setVisible(false);
+        } else if ("En cocina".equals(estadoEstudiante)) {
+            this.menuGUI.btnEntradaSalida.setVisible(false); // Ocultar entrada/salida mientras está en cocina
+
+            // Mostrar solo el botón para finalizar 
+            this.menuGUI.btnComenzarFinalizarCocina.setText("Fenilizar uso cocina");
+            this.menuGUI.btnComenzarFinalizarCocina.setVisible(false);
+            this.menuGUI.btnBeginBotellon.setVisible(false);
+        }
     }
     
-    // metodo que cambien el nombre del boton registra Entrad/registrar salida segun el estado del estudiante
-       private void cambiarNombrebtn(){
-           if ("Dentro".equals(MenuDOU.getEstatoEstudiante())) {
-               this.menuGUI.btnEntradaSalida.setText("Registra salida");
-               System.out.println("Registrar salida");
-               
-           }else if ("Fuera".equals(MenuDOU.getEstatoEstudiante())){
-               this.menuGUI.btnEntradaSalida.setText("Registra entrada");
-           }
-           
-       }
-
+   
         
-
+    // lamar a tegistar entrada
+    
     
     
     
@@ -76,28 +92,82 @@ public class MenuCTRL implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-         // validamos la comfirmacion
-        
-        
+         String estadoEstudiante = MenuDOU.getEstadoEstudiante();
+
         if (e.getSource() == this.menuGUI.btnEntradaSalida) {
-            System.out.println("btn Actual: " + this.menuGUI.btnEntradaSalida.getText());
-            DialogoConfirmarGUI d = new DialogoConfirmarGUI();
-            DialogoConfimarCTRL dcctrl = new DialogoConfimarCTRL(d);
+            if ("Registrar entrada".equals(this.menuGUI.btnEntradaSalida.getText())) {
+                try {
+                    // Lógica para registrar entrada
+                    System.out.println("Registrando entrada");
+                    boolean resultado = MenuDOU.registrarEntrada();
+                    System.out.println("Entrada lista");
                     
                     
-            d.setVisible(true);
-        }
-        
-        
+                    
+                    MenuDOU.setEstadoEstudiante("Dentro");
+                    HomeStudentGUI hsgui = new HomeStudentGUI();
+                    HomeCTRL homeCTRL = new HomeCTRL(hsgui);
+                    menuGUI.dispose();
+                    hsgui.setVisible(true);
+                        
             
-            if (e.getSource() == this.menuGUI.btnVolver) {
-                        menuGUI.dispose();
-                        HomeStudentGUI hsgui = new HomeStudentGUI();
-                        HomeCTRL homeCTRL = new HomeCTRL(hsgui);
-                        hsgui.setVisible(true);
-                        dcgui.dispose();
-           
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(MenuCTRL.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            } else if ("Registrar salida".equals(this.menuGUI.btnEntradaSalida.getText())) {
+                // Lógica para registrar salida
+                 try {
+                    // Lógica para registrar entrada
+                    System.out.println("Registrando salida");
+                    boolean resultado = MenuDOU.registrarSalida();
+                    System.out.println("salida lista");
+                    
+                    
+                    
+                    MenuDOU.setEstadoEstudiante("Fuera");
+                    HomeStudentGUI hsgui = new HomeStudentGUI();
+                    HomeCTRL homeCTRL = new HomeCTRL(hsgui);
+                    menuGUI.dispose();
+                    hsgui.setVisible(true);
+                        
+            
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(MenuCTRL.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
+            actualizarEstadoBotones(); // Actualiza el estado de los botones después de la acción
+        }
+
+        if (e.getSource() == this.menuGUI.btnComenzarFinalizarCocina) {
+            // Lógica para iniciar cocina
+            if ("Solicitar uso cocina".equals(this.menuGUI.btnComenzarFinalizarCocina.getText())) {
+                // Lógica para registrar entrada
+                MenuDOU.setEstadoEstudiante("En cocina");
+            } else if ("Fenilizar uso cocina".equals(this.menuGUI.btnEntradaSalida.getText())) {
+                // Lógica para registrar salida
+                MenuDOU.setEstadoEstudiante("Dentro");
+            }
+            actualizarEstadoBotones(); // Actualiza el estado de los botones después de la acción
+            
+            
+        }
+
+        if (e.getSource() == this.menuGUI.btnComenzarFinalizarCocina) {
+            // Lógica para finalizar cocina
+            MenuDOU.setEstadoEstudiante("Dentro");
+            actualizarEstadoBotones(); // Actualiza los botones
+        }
+
+        if (e.getSource() == this.menuGUI.btnVolver) {
+            menuGUI.dispose();
+            HomeStudentGUI hsgui = new HomeStudentGUI();
+            HomeCTRL homeCTRL = new HomeCTRL(hsgui);
+            hsgui.setVisible(true);
+            dcgui.dispose();
+        }
+            
             
            
         

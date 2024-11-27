@@ -12,14 +12,14 @@ public class MenuDOU {
     private String btnSeleccionado;
     
     // Atribuo que guarda el estado del estudiante
-    public static String estatoEstudiante; 
+    public static String estadoEstudiante; 
 
-    public static String getEstatoEstudiante() {
-        return estatoEstudiante;
+    public static String getEstadoEstudiante() {
+        return estadoEstudiante;
     }
 
-    public static void setEstatoEstudiante(String estatoEstudiante) {
-        MenuDOU.estatoEstudiante = estatoEstudiante;
+    public static void setEstadoEstudiante(String estatoEstudiante) {
+        MenuDOU.estadoEstudiante = estatoEstudiante;
     }
 
     
@@ -64,7 +64,7 @@ public class MenuDOU {
                 // Procesar los resultados
                 while (resultSet.next()) {
                     String estadoEstudianteActual = resultSet.getString("Estado_estudiante");
-                    setEstatoEstudiante(estadoEstudianteActual);
+                    setEstadoEstudiante(estadoEstudianteActual);
                     System.out.println("Estado del estudiante: " +  estadoEstudianteActual);
                 }
                 // Cerrar recursos
@@ -95,7 +95,40 @@ public class MenuDOU {
             int mat =  HomeDOU.getMatricula();
             System.out.println(mat);
             statement.setInt(1, mat);
-             statement.close();
+            
+
+            // Ejecutar el procedimiento
+            return statement.execute();
+            // Cerrar recursos
+            
+        } catch (SQLException e) {
+            if ("45000".equals(e.getMessage())) {
+                System.out.println(e.getMessage());
+                return false;
+            } else {
+                System.out.println("Algo saliomal " + e.getMessage());
+                return false;
+            }      
+        
+        }
+        
+        
+               
+    }
+      
+    public static boolean registrarSalida() throws FileNotFoundException{
+        System.out.println("obteniendo estado.. ");
+        String SQL_REGISTRARENTRADA = "{CALL registrasalida(?)}";
+        try(Connection conexion = ConexionDB.getConexion();
+                CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRARENTRADA)){
+            
+          
+             
+            // Establecer el valor del parámetro de entrada
+            int mat =  HomeDOU.getMatricula();
+            System.out.println(mat);
+            statement.setInt(1, mat);
+            
 
             // Ejecutar el procedimiento
             return statement.execute();
