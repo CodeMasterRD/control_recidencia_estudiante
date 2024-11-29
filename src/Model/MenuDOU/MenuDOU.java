@@ -44,9 +44,9 @@ public class MenuDOU {
     }
     
     
-    public static void getEstadoSTU() throws FileNotFoundException{
+    public static String getEstadoSTU() throws FileNotFoundException{
         System.out.println("obteniendo estado.. ");
-        String PSQL_GET_ESTADO = "{CALL p_Estado_estudiante (?)}";
+        String PSQL_GET_ESTADO = "{CALL p_Estado_estudiante(?)}";
         try(Connection conexion = ConexionDB.getConexion();
                 CallableStatement statement = (CallableStatement) conexion.prepareCall(PSQL_GET_ESTADO)){
             
@@ -54,6 +54,7 @@ public class MenuDOU {
              
             // Establecer el valor del parámetro de entrada
             int mat =  HomeDOU.getMatricula();
+            System.out.println("Mat para el estado");
             System.out.println(mat);
             statement.setInt(1, mat);
             
@@ -64,8 +65,9 @@ public class MenuDOU {
                 // Procesar los resultados
                 while (resultSet.next()) {
                     String estadoEstudianteActual = resultSet.getString("Estado_estudiante");
-                    setEstadoEstudiante(estadoEstudianteActual);
+//                    setEstadoEstudiante(estadoEstudianteActual);
                     System.out.println("Estado del estudiante: " +  estadoEstudianteActual);
+                    return estadoEstudianteActual;
                 }
                 // Cerrar recursos
             }
@@ -81,6 +83,7 @@ public class MenuDOU {
         
         
         }
+        return null;
     }
     
       public static boolean registrarEntrada() throws FileNotFoundException{
@@ -151,5 +154,59 @@ public class MenuDOU {
         
                
     }
+    
+    
+    // solicitar uso de la cocina
+    
+        public static boolean registrarUsoCocina() throws FileNotFoundException {
+        String SQL_REGISTRAR_USO_COCINA = "{CALL RegistrarUsoCocina(?)}";
+
+        try (Connection conexion = ConexionDB.getConexion();  // Conexión automática usando try-with-resources
+             CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRAR_USO_COCINA)) {
+            int mat =  HomeDOU.getMatricula();
+            // Establecer el valor del parámetro de entrada
+            statement.setInt(1, mat);
+
+            // Ejecutar el procedimiento almacenado
+            statement.execute();
+
+            
+            return true;
+
+        } catch (SQLException e) {
+            // Manejar errores de SQL
+            if ("45000".equals(e.getSQLState())) {
+                System.out.println("Error personalizado: " + e.getMessage());
+            } else {
+                System.out.println("Error inesperado: " + e.getMessage());
+            }
+            return false;
+        }
+    }
+       public static boolean finalizaUsoCocina() throws FileNotFoundException {
+        String SQL_REGISTRAR_USO_COCINA = "{CALL FinalizarUsoCocina(?)}";
+
+        try (Connection conexion = ConexionDB.getConexion();  // Conexión automática usando try-with-resources
+             CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRAR_USO_COCINA)) {
+            int mat =  HomeDOU.getMatricula();
+            // Establecer el valor del parámetro de entrada
+            statement.setInt(1, mat);
+
+            // Ejecutar el procedimiento almacenado
+            statement.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+            // Manejar errores de SQL
+            if ("45000".equals(e.getSQLState())) {
+                System.out.println("Error personalizado: " + e.getMessage());
+            } else {
+                System.out.println("Error inesperado: " + e.getMessage());
+            }
+            return false;
+        }
+    }
+    
     
 }

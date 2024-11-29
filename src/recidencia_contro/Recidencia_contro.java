@@ -1,16 +1,12 @@
 
 package recidencia_contro;
 
-import Controler.DialogoCTRL.DialogoConfimarCTRL;
 import Model.ConexionDB;
 import View.HomeStudentGUI;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import Controler.HomeCTRL.HomeCTRL;
-import View.MenuGUI;
-import View.Dialogos.DialogoConfirmarGUI;
-import Controler.MenuCTRL.MenuCTRL;
 
 
 public class Recidencia_contro {
