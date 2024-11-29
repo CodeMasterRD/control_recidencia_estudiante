@@ -75,7 +75,7 @@ public class MenuCTRL implements ActionListener{
         }
     }
     
-   
+// logica de los botellones
         
     // llamar a registar entrada
  public  void llamarRegistrarEntrada(){
