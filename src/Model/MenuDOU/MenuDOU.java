@@ -86,6 +86,9 @@ public class MenuDOU {
         return null;
     }
     
+    
+    
+    
       public static boolean registrarEntrada() throws FileNotFoundException{
         System.out.println("obteniendo estado.. ");
         String SQL_REGISTRARENTRADA = "{CALL registraentrada(?)}";
@@ -207,6 +210,80 @@ public class MenuDOU {
             return false;
         }
     }
+       
+       
+      public static boolean SolicitarBotellon() throws FileNotFoundException{
+        System.out.println("Soolicitando botellon");
+//        String SQL_REGISTRARENTRADA = "{CALL registrasalida(?)}";
+//        try(Connection conexion = ConexionDB.getConexion();
+//                CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRARENTRADA)){
+//            
+//          
+//             
+//            // Establecer el valor del parámetro de entrada
+//            int mat =  HomeDOU.getMatricula();
+//            System.out.println(mat);
+//            statement.setInt(1, mat);
+//            
+//
+//            // Ejecutar el procedimiento
+//            statement.execute();
+//            return true;
+//            
+//            // Cerrar recursos
+//            
+//        } catch (SQLException e) {
+//            if ("45000".equals(e.getMessage())) {
+//                System.out.println(e.getMessage());
+//                return false;
+//            } else {
+//                System.out.println("Algo saliomal " + e.getMessage());
+//                return false;
+//            }      
+//        
+//        }
+        
+ //   }
+        return false;
     
+      }
+      
+      
+      
+       public static boolean DepocitarBotellon() throws FileNotFoundException{
+        System.out.println("Depocitando Botellon");
+//        String SQL_REGISTRARENTRADA = "{CALL registrasalida(?)}";
+//        try(Connection conexion = ConexionDB.getConexion();
+//                CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRARENTRADA)){
+//            
+//          
+//             
+//            // Establecer el valor del parámetro de entrada
+//            int mat =  HomeDOU.getMatricula();
+//            System.out.println(mat);
+//            statement.setInt(1, mat);
+//            
+//
+//            // Ejecutar el procedimiento
+//            statement.execute();
+//            return true;
+//            
+//            // Cerrar recursos
+//            
+//        } catch (SQLException e) {
+//            if ("45000".equals(e.getMessage())) {
+//                System.out.println(e.getMessage());
+//                return false;
+//            } else {
+//                System.out.println("Algo saliomal " + e.getMessage());
+//                return false;
+//            }      
+//        
+//        }
+        
+ //   }
+        return false;
     
+      }
+      
 }

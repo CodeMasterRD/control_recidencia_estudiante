@@ -18,7 +18,7 @@ public class MenuGUI extends javax.swing.JFrame {
         btnRegistrarUsoCocina = new javax.swing.JButton();
         btnEntradaSalida = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnBeginBotellon = new javax.swing.JButton();
+        btnSolicitarBotellon_DepositarBotello = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btnFinalizarUsoCocina = new javax.swing.JButton();
 
@@ -50,18 +50,13 @@ public class MenuGUI extends javax.swing.JFrame {
         jLabel1.setText("Seleciona una operacion");
         jpContenedor.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 210, 20));
 
-        btnBeginBotellon.setBackground(new java.awt.Color(45, 45, 45));
-        btnBeginBotellon.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
-        btnBeginBotellon.setForeground(new java.awt.Color(255, 255, 255));
-        btnBeginBotellon.setText("Solicitar Botellon");
-        btnBeginBotellon.setBorder(null);
-        btnBeginBotellon.setBorderPainted(false);
-        btnBeginBotellon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBeginBotellonActionPerformed(evt);
-            }
-        });
-        jpContenedor.add(btnBeginBotellon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 340, 70));
+        btnSolicitarBotellon_DepositarBotello.setBackground(new java.awt.Color(45, 45, 45));
+        btnSolicitarBotellon_DepositarBotello.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
+        btnSolicitarBotellon_DepositarBotello.setForeground(new java.awt.Color(255, 255, 255));
+        btnSolicitarBotellon_DepositarBotello.setText("Solicitar botellon");
+        btnSolicitarBotellon_DepositarBotello.setBorder(null);
+        btnSolicitarBotellon_DepositarBotello.setBorderPainted(false);
+        jpContenedor.add(btnSolicitarBotellon_DepositarBotello, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 340, 70));
 
         btnVolver.setBackground(new java.awt.Color(250, 76, 76));
         btnVolver.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
@@ -75,11 +70,6 @@ public class MenuGUI extends javax.swing.JFrame {
         btnFinalizarUsoCocina.setForeground(new java.awt.Color(255, 255, 255));
         btnFinalizarUsoCocina.setText("Finalizar uso cocina");
         btnFinalizarUsoCocina.setBorder(null);
-        btnFinalizarUsoCocina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFinalizarUsoCocinaActionPerformed(evt);
-            }
-        });
         jpContenedor.add(btnFinalizarUsoCocina, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 340, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -97,21 +87,13 @@ public class MenuGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBeginBotellonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBeginBotellonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBeginBotellonActionPerformed
-
-    private void btnFinalizarUsoCocinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarUsoCocinaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFinalizarUsoCocinaActionPerformed
-
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnBeginBotellon;
     public javax.swing.JButton btnEntradaSalida;
     public javax.swing.JButton btnFinalizarUsoCocina;
     public javax.swing.JButton btnRegistrarUsoCocina;
+    public javax.swing.JButton btnSolicitarBotellon_DepositarBotello;
     public javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jpContenedor;

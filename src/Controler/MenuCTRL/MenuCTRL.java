@@ -30,7 +30,7 @@ public class MenuCTRL implements ActionListener{
         
         this.menuGUI.btnRegistrarUsoCocina.addActionListener(this);
         this.menuGUI.btnFinalizarUsoCocina.addActionListener(this);
-        this.menuGUI.btnBeginBotellon.addActionListener(this);
+        this.menuGUI.btnSolicitarBotellon_DepositarBotello.addActionListener(this);
         this.menuGUI.btnVolver.addActionListener(this);
         
         
@@ -56,7 +56,7 @@ public class MenuCTRL implements ActionListener{
             this.menuGUI.btnRegistrarUsoCocina.setVisible(true);
             this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
             
-            this.menuGUI.btnBeginBotellon.setVisible(true);
+            this.menuGUI.btnSolicitarBotellon_DepositarBotello.setVisible(true);
         } else if ("Fuera".equals(MenuDOU.getEstadoSTU())) {
             
             this.menuGUI.btnEntradaSalida.setVisible(true);
@@ -65,180 +65,16 @@ public class MenuCTRL implements ActionListener{
             // Ocultar botones de cocina y botellón si está fuera
             this.menuGUI.btnRegistrarUsoCocina.setVisible(false);
             this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
-            this.menuGUI.btnBeginBotellon.setVisible(false);
+            this.menuGUI.btnSolicitarBotellon_DepositarBotello.setVisible(false);
         } else if ("En cocina".equals(MenuDOU.getEstadoSTU())) {
             this.menuGUI.btnEntradaSalida.setVisible(false); // Ocultar entrada/salida mientras está en cocina
             // Mostrar solo el botón para finalizar 
             this.menuGUI.btnRegistrarUsoCocina.setVisible(false);
-            this.menuGUI.btnFinalizarUsoCocina.setVisible(true);
-            this.menuGUI.btnBeginBotellon.setVisible(false);
+            this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
+            this.menuGUI.btnSolicitarBotellon_DepositarBotello.setVisible(false);
         }
     }
-    
-// logica de los botellones
-        
-    // llamar a registar entrada
- public  void llamarRegistrarEntrada(){
-         try {
-                    // Lógica para registrar entrada
-                    
-                    MenuDOU.registrarEntrada();  
-                    HomeStudentGUI hsgui = new HomeStudentGUI();
-                    HomeCTRL homeCTRL = new HomeCTRL(hsgui);
-                    menuGUI.setVisible(false);
-                    menuGUI.dispose();
-                    hsgui.setVisible(true);
-                    
-                   
-                    
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(MenuCTRL.class.getName()).log(Level.SEVERE, null, ex);
-                }
-         
-    }
-    
-      // llamar a registar entrada
-    public  void llamarRegistrarSalida(){
-         try {
-                    // Lógica para registrar entrada
-                    
-                    boolean resultado = MenuDOU.registrarSalida();
-                    if (resultado) {
-                    
-                        
-                    HomeStudentGUI hsgui = new HomeStudentGUI();
-                    HomeCTRL homeCTRL = new HomeCTRL(hsgui);
-                    menuGUI.setVisible(false);
-                    menuGUI.dispose();
-                    hsgui.setVisible(true);
-                    
-                    }
-                    
-            
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(MenuCTRL.class.getName()).log(Level.SEVERE, null, ex);
-                }
-    }
-    
-        // llamar a registar entrada
-    public  void llamarSolicitarCocina(){
-         try {
-                    // Lógica para registrar entrada
-                    
-                    MenuDOU.registrarUsoCocina();
-                     
-                    HomeStudentGUI hsgui = new HomeStudentGUI();
-                    HomeCTRL homeCTRL = new HomeCTRL(hsgui);
-                    menuGUI.setVisible(false);
-                    menuGUI.dispose();
-                    hsgui.setVisible(true);
-                    
-                    
-                    
-            
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(MenuCTRL.class.getName()).log(Level.SEVERE, null, ex);
-                }
-    }
 
-         // llamar a registar entrada
-    public  void llamarFinalizarUsococina(){
-         try {
-                    // Lógica para registrar entrada
-                    
-                   MenuDOU.finalizaUsoCocina();
-                    HomeStudentGUI hsgui = new HomeStudentGUI();
-                    HomeCTRL homeCTRL = new HomeCTRL(hsgui);
-                    menuGUI.setVisible(false);
-                    menuGUI.dispose();
-                    hsgui.setVisible(true);
-                    
-                   
-                    
-            
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(MenuCTRL.class.getName()).log(Level.SEVERE, null, ex);
-                }
-    }
-    
-
-//
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        
-//         
-//
-//        if (e.getSource() == this.menuGUI.btnEntradaSalida) {
-//            try {
-//                if ("Registrar entrada".equals(this.menuGUI.btnEntradaSalida.getText())) {
-//                    
-//                    
-//                    DialogoConfimarCTRL dcctrl = new  DialogoConfimarCTRL(dcgui, menuGUI);
-//                    dcgui.setVisible(true);
-//                    
-//                    
-//                    
-//                    
-//                } else if ("Registrar salida".equals(this.menuGUI.btnEntradaSalida.getText())) {
-//                    
-//                    // Lógica para registrar salida
-//                    
-//                    
-//                    DialogoConfimarCTRL dcctrl = new  DialogoConfimarCTRL(dcgui, menuGUI);
-//                    dcgui.setVisible(true);
-//                    
-//                    
-//                    
-//                    
-//                    
-//                }
-//                actualizarEstadoBotones(); // Actualiza el estado de los botones después de la acción
-//            } catch (FileNotFoundException ex) {
-//                Logger.getLogger(MenuCTRL.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//
-//        if (e.getSource() == this.menuGUI.btnComenzarFinalizarCocina) {
-//            try {
-//                // Lógica para iniciar cocina
-//                if ("Solicitar uso cocina".equals(this.menuGUI.btnComenzarFinalizarCocina.getText())) {
-//                    // Lógica para registrar entrada
-//                    DialogoConfimarCTRL dcctrl = new  DialogoConfimarCTRL(dcgui, menuGUI);
-//                    dcgui.setVisible(true);
-//                } else if ("Fenilizar uso cocina".equals(this.menuGUI.btnEntradaSalida.getText())) {
-//                    // Lógica para registrar salida
-//                    DialogoConfimarCTRL dcctrl = new  DialogoConfimarCTRL(dcgui, menuGUI);
-//                    dcgui.setVisible(true);
-//                }
-//                actualizarEstadoBotones(); // Actualiza el estado de los botones después de la acción
-//            } catch (FileNotFoundException ex) {
-//                Logger.getLogger(MenuCTRL.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            
-//            
-//        }
-//
-//       
-//        if (e.getSource() == this.menuGUI.btnVolver) {
-//            
-//            
-//            HomeStudentGUI hsgui = new HomeStudentGUI();
-//            HomeCTRL homeCTRL = new HomeCTRL(hsgui);
-//            hsgui.setVisible(true);
-//            menuGUI.setVisible(false);
-//            menuGUI.dispose();
-//            dcgui.setVisible(false);
-//            dcgui.dispose();
-//        }
-//            
-//            
-//           
-//        
-//    }
-    
-    
-    
-    
     
     @Override
 public void actionPerformed(ActionEvent e) {
@@ -250,9 +86,13 @@ public void actionPerformed(ActionEvent e) {
         } else if (source == menuGUI.btnRegistrarUsoCocina) {
             handleRegistrarCocinaAction();
         } else if (source == menuGUI.btnFinalizarUsoCocina) {
-            System.out.println("finalizar uso cocina");
+//            System.out.println("finalizar uso cocina");
             handleFinalizarUsoCocinaAction();
-        } else if (source == menuGUI.btnVolver) {
+        } else if (source == menuGUI.btnSolicitarBotellon_DepositarBotello) {
+            System.out.println("CLick solicitar o depositar");
+            handleSolicitar_Depositar_Botellon();
+            
+        }else if (source == menuGUI.btnVolver) {
             handleVolverAction();
         }
     } catch (FileNotFoundException ex) {
@@ -294,7 +134,13 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
 
         if ("Solicitar uso cocina".equals(buttonText)) {
             if (mostrarDialogoConfirmacion("¿Deseas solicitar el uso de la cocina?")) {
-                llamarSolicitarCocina();
+                    MenuDOU.registrarUsoCocina();
+                     
+                    HomeStudentGUI hsgui = new HomeStudentGUI();
+                    HomeCTRL homeCTRL = new HomeCTRL(hsgui);
+                    menuGUI.setVisible(false);
+                    menuGUI.dispose();
+                    hsgui.setVisible(true);
             }
         }
 
@@ -307,12 +153,47 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
         if ("Finalizar uso cocina".equals(buttonText)) {
            if (mostrarDialogoConfirmacion("¿Deseas finalizar el uso de la cocina?")) {
                 System.out.println("llamando a finalizar uso cocina");
-                llamarFinalizarUsococina();
+                    MenuDOU.finalizaUsoCocina();
+                     
+                    HomeStudentGUI hsgui = new HomeStudentGUI();
+                    HomeCTRL homeCTRL = new HomeCTRL(hsgui);
+                    menuGUI.setVisible(false);
+                    menuGUI.dispose();
+                    hsgui.setVisible(true);
         }
         }
 
         actualizarEstadoBotones();
     } 
+    
+    
+    private void handleSolicitar_Depositar_Botellon() throws FileNotFoundException {
+    String buttonText = menuGUI.btnSolicitarBotellon_DepositarBotello.getText();
+
+    if ("Solicitar botellon".equals(buttonText)) {
+         if (mostrarDialogoConfirmacion("¿Deseas solicitar un botellon?")) {
+            
+                    // MenuDOU.registrarEntrada();  
+                    HomeStudentGUI hsgui = new HomeStudentGUI();
+                    HomeCTRL homeCTRL = new HomeCTRL(hsgui);
+                    menuGUI.setVisible(false);
+                    menuGUI.dispose();
+                    hsgui.setVisible(true);
+        }
+    } else if ("Depocitar botellon".equals(buttonText)) {
+        if (mostrarDialogoConfirmacion("¿Deseas depositar la salida?")) {
+            
+                    //MenuDOU.registrarSalida();  
+                    HomeStudentGUI hsgui = new HomeStudentGUI();
+                    HomeCTRL homeCTRL = new HomeCTRL(hsgui);
+                    menuGUI.setVisible(false);
+                    menuGUI.dispose();
+                    hsgui.setVisible(true);
+        }
+    }
+
+    actualizarEstadoBotones();
+}
     
 
     private void handleVolverAction() {
