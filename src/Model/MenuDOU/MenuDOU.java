@@ -45,7 +45,7 @@ public class MenuDOU {
     
     
     public static String getEstadoSTU() throws FileNotFoundException{
-        System.out.println("obteniendo estado.. ");
+        
         String PSQL_GET_ESTADO = "{CALL p_Estado_estudiante(?)}";
         try(Connection conexion = ConexionDB.getConexion();
                 CallableStatement statement = (CallableStatement) conexion.prepareCall(PSQL_GET_ESTADO)){
@@ -54,8 +54,8 @@ public class MenuDOU {
              
             // Establecer el valor del parámetro de entrada
             int mat =  HomeDOU.getMatricula();
-            System.out.println("Mat para el estado");
-            System.out.println(mat);
+//            System.out.println("Mat para el estado");
+//            System.out.println(mat);
             statement.setInt(1, mat);
             
 
@@ -86,6 +86,49 @@ public class MenuDOU {
         return null;
     }
     
+    
+    // METODO PARA OTENER EL ESTADO DE LA NOTIFICACIONE
+    public static String getEstadoNotificacio() throws FileNotFoundException{
+        System.out.println("obteniendo estado notificacion.. ");
+        String PSQL_GET_ESTADO = "{CALL obtenerEstadoNotificacion(?)}";
+        try(Connection conexion = ConexionDB.getConexion();
+                CallableStatement statement = (CallableStatement) conexion.prepareCall(PSQL_GET_ESTADO)){
+            
+          
+             
+            // Establecer el valor del parámetro de entrada
+            int mat =  HomeDOU.getMatricula();
+            System.out.println("Mat para el estado notificacion");
+            System.out.println(mat);
+            statement.setInt(1, mat);
+            
+
+            // Procesar los resultados
+            try ( // Ejecutar el procedimiento
+                    ResultSet resultSet = statement.executeQuery()) {
+                // Procesar los resultados
+                while (resultSet.next()) {
+                    String estadoNotificacion = resultSet.getString("Estado_notificacion");
+//                    setEstadoEstudiante(estadoEstudianteActual);
+                    System.out.println("Estado Notificacion " +  estadoNotificacion);
+                    return estadoNotificacion;
+                }
+                // Cerrar recursos
+            }
+            statement.close();
+            
+        } catch (SQLException e) {
+            if ("45000".equals(e.getMessage())) {
+                System.out.println(e.getMessage());
+            } else {
+                System.out.println("Algo saliomal " + e.getMessage());
+            }
+           
+        
+        
+        }
+        return null;
+    }
     
     
     
@@ -214,39 +257,37 @@ public class MenuDOU {
        
       public static boolean SolicitarBotellon() throws FileNotFoundException{
         System.out.println("Soolicitando botellon");
-//        String SQL_REGISTRARENTRADA = "{CALL registrasalida(?)}";
-//        try(Connection conexion = ConexionDB.getConexion();
-//                CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRARENTRADA)){
-//            
-//          
-//             
-//            // Establecer el valor del parámetro de entrada
-//            int mat =  HomeDOU.getMatricula();
-//            System.out.println(mat);
-//            statement.setInt(1, mat);
-//            
-//
-//            // Ejecutar el procedimiento
-//            statement.execute();
-//            return true;
-//            
-//            // Cerrar recursos
-//            
-//        } catch (SQLException e) {
-//            if ("45000".equals(e.getMessage())) {
-//                System.out.println(e.getMessage());
-//                return false;
-//            } else {
-//                System.out.println("Algo saliomal " + e.getMessage());
-//                return false;
-//            }      
-//        
-//        }
+        String SQL_REGISTRARENTRADA = "{CALL solicitarBotellones(?)}";
+        try(Connection conexion = ConexionDB.getConexion();
+                CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRARENTRADA)){
+             
+            // Establecer el valor del parámetro de entrada
+            int mat =  HomeDOU.getMatricula();
+            System.out.println(mat);
+            statement.setInt(1, mat);
+            
+
+            // Ejecutar el procedimiento
+            statement.execute();
+            return true;
+            
+            // Cerrar recursos
+            
+        } catch (SQLException e) {
+            if ("45000".equals(e.getMessage())) {
+                System.out.println(e.getMessage());
+                return false;
+            } else {
+                System.out.println("Algo saliomal " + e.getMessage());
+                return false;
+            }      
         
- //   }
-        return false;
+        }
+        
+    }
+        
     
-      }
+      
       
       
       
