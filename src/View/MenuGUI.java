@@ -1,6 +1,9 @@
 
 package View;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 
 public class MenuGUI extends javax.swing.JFrame {
 
@@ -21,6 +24,8 @@ public class MenuGUI extends javax.swing.JFrame {
         btnSolicitarBotellon_DepositarBotello = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btnFinalizarUsoCocina = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jbNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -35,6 +40,7 @@ public class MenuGUI extends javax.swing.JFrame {
         btnRegistrarUsoCocina.setText("Solicitar uso cocina");
         btnRegistrarUsoCocina.setBorder(null);
         btnRegistrarUsoCocina.setBorderPainted(false);
+        btnRegistrarUsoCocina.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarUsoCocina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarUsoCocinaActionPerformed(evt);
@@ -48,12 +54,18 @@ public class MenuGUI extends javax.swing.JFrame {
         btnEntradaSalida.setText("Registra entrada");
         btnEntradaSalida.setBorder(null);
         btnEntradaSalida.setBorderPainted(false);
+        btnEntradaSalida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEntradaSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntradaSalidaActionPerformed(evt);
+            }
+        });
         jpContenedor.add(btnEntradaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 340, 70));
 
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Seleciona una operacion");
-        jpContenedor.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 280, -1));
+        jpContenedor.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 280, -1));
 
         btnSolicitarBotellon_DepositarBotello.setBackground(new java.awt.Color(45, 45, 45));
         btnSolicitarBotellon_DepositarBotello.setFont(new java.awt.Font("Roboto Light", 1, 18)); // NOI18N
@@ -61,6 +73,7 @@ public class MenuGUI extends javax.swing.JFrame {
         btnSolicitarBotellon_DepositarBotello.setText("Solicitar botellon");
         btnSolicitarBotellon_DepositarBotello.setBorder(null);
         btnSolicitarBotellon_DepositarBotello.setBorderPainted(false);
+        btnSolicitarBotellon_DepositarBotello.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpContenedor.add(btnSolicitarBotellon_DepositarBotello, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 340, 70));
 
         btnVolver.setBackground(new java.awt.Color(250, 76, 76));
@@ -75,7 +88,18 @@ public class MenuGUI extends javax.swing.JFrame {
         btnFinalizarUsoCocina.setForeground(new java.awt.Color(255, 255, 255));
         btnFinalizarUsoCocina.setText("Finalizar uso cocina");
         btnFinalizarUsoCocina.setBorder(null);
+        btnFinalizarUsoCocina.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         jpContenedor.add(btnFinalizarUsoCocina, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 340, 70));
+
+        jLabel2.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Hola!");
+        jpContenedor.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 50, 30));
+
+        jbNombre.setBackground(new java.awt.Color(255, 255, 255));
+        jbNombre.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
+        jbNombre.setForeground(new java.awt.Color(255, 255, 255));
+        jpContenedor.add(jbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 270, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,7 +120,58 @@ public class MenuGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarUsoCocinaActionPerformed
 
-    
+    public JButton getBtnEntradaSalida() {
+        return btnEntradaSalida;
+    }
+
+    public void setBtnEntradaSalida(JButton btnEntradaSalida) {
+        this.btnEntradaSalida = btnEntradaSalida;
+    }
+
+    public JButton getBtnFinalizarUsoCocina() {
+        return btnFinalizarUsoCocina;
+    }
+
+    public void setBtnFinalizarUsoCocina(JButton btnFinalizarUsoCocina) {
+        this.btnFinalizarUsoCocina = btnFinalizarUsoCocina;
+    }
+
+    public JButton getBtnRegistrarUsoCocina() {
+        return btnRegistrarUsoCocina;
+    }
+
+    public void setBtnRegistrarUsoCocina(JButton btnRegistrarUsoCocina) {
+        this.btnRegistrarUsoCocina = btnRegistrarUsoCocina;
+    }
+
+    public JButton getBtnSolicitarBotellon_DepositarBotello() {
+        return btnSolicitarBotellon_DepositarBotello;
+    }
+
+    public void setBtnSolicitarBotellon_DepositarBotello(JButton btnSolicitarBotellon_DepositarBotello) {
+        this.btnSolicitarBotellon_DepositarBotello = btnSolicitarBotellon_DepositarBotello;
+    }
+
+    public JButton getBtnVolver() {
+        return btnVolver;
+    }
+
+    public void setBtnVolver(JButton btnVolver) {
+        this.btnVolver = btnVolver;
+    }
+
+    public JLabel getJbNombre() {
+        return jbNombre;
+    }
+
+    public void setJbNombre(JLabel jbNombre) {
+        this.jbNombre = jbNombre;
+    }
+
+    private void btnEntradaSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaSalidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEntradaSalidaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnEntradaSalida;
@@ -105,6 +180,8 @@ public class MenuGUI extends javax.swing.JFrame {
     public javax.swing.JButton btnSolicitarBotellon_DepositarBotello;
     public javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jbNombre;
     private javax.swing.JPanel jpContenedor;
     // End of variables declaration//GEN-END:variables
 }

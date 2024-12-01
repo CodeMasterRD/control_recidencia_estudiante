@@ -6,23 +6,33 @@ import Controler.HomeCTRL.HomeCTRL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Model.MenuDOU.MenuDOU;
+import Model.RegistroMatricula.HomeDOU;
 import View.MenuGUI;
 import java.io.FileNotFoundException;
 import View.HomeStudentGUI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import Model.EstudianteModel.EstudianteModel;
+import Model.Notificaciones.NotificacionesDOU;
+
+
+
 
 public class MenuCTRL implements ActionListener{
     
     MenuGUI menuGUI = new MenuGUI();
     MenuDOU mdou = new MenuDOU();
+    HomeDOU homeDOU = new  HomeDOU();
+    EstudianteModel estudianteModel = new EstudianteModel();
+    NotificacionesDOU ndou = new NotificacionesDOU();
     
     
     
-    
+
     
     public MenuCTRL(MenuGUI m) throws FileNotFoundException {
+        
         // inicilizamos los eventos del la clase MenuGUI
         this.menuGUI = m;
         
@@ -32,23 +42,22 @@ public class MenuCTRL implements ActionListener{
         this.menuGUI.btnFinalizarUsoCocina.addActionListener(this);
         this.menuGUI.btnSolicitarBotellon_DepositarBotello.addActionListener(this);
         this.menuGUI.btnVolver.addActionListener(this);
-        
-        
-        
+
         // Establecemos el estado inicial de los botones según el estado del estudiante
+        
+        
+        MenuDOU.getEstadoNotificacio();
         actualizarEstadoBotones();
+        m.jbNombre.setText(EstudianteModel.getNombre() +" "+ EstudianteModel.getApellido());
         
         
     }
     
      // Método que actualiza la visibilidad y el texto de los botones según el estado del estudiante
     private void actualizarEstadoBotones() throws FileNotFoundException {
-          // Obtiene el estado actual del estudiante
-          //MenuDOU.getEstadoSTU();
         
-        
-        if ("Dentro".equals(MenuDOU.getEstadoSTU() ) && "Pendiente".equals(MenuDOU.getEstadoNotificacio()) ) {
-
+        if ("Dentro".equals(EstudianteModel.getEstado() ) && "Pendiente".equals(NotificacionesDOU.getEstado_notificaciones()) ) {
+            
             this.menuGUI.btnEntradaSalida.setVisible(true);
             this.menuGUI.btnEntradaSalida.setText("Registrar salida");
 
@@ -59,7 +68,7 @@ public class MenuCTRL implements ActionListener{
             this.menuGUI.btnSolicitarBotellon_DepositarBotello.setText("En espera de botellon");
             
             
-        }else if ("Dentro".equals(MenuDOU.getEstadoSTU() ) ) {
+        }else if ("Dentro".equals(EstudianteModel.getEstado()) ) {
 
             this.menuGUI.btnEntradaSalida.setVisible(true);
             this.menuGUI.btnEntradaSalida.setText("Registrar salida");
@@ -69,7 +78,7 @@ public class MenuCTRL implements ActionListener{
             this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
             
             this.menuGUI.btnSolicitarBotellon_DepositarBotello.setVisible(true);
-        }  else if ("Fuera".equals(MenuDOU.getEstadoSTU())) {
+        }  else if ("Fuera".equals(EstudianteModel.getMatricula())) {
             
             this.menuGUI.btnEntradaSalida.setVisible(true);
             this.menuGUI.btnEntradaSalida.setText("Registrar entrada");
@@ -78,29 +87,30 @@ public class MenuCTRL implements ActionListener{
             this.menuGUI.btnRegistrarUsoCocina.setVisible(false);
             this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
             this.menuGUI.btnSolicitarBotellon_DepositarBotello.setVisible(false);
-        } else if ("En cocina".equals(MenuDOU.getEstadoSTU())) {
+        } else if ("En cocina".equals(EstudianteModel.getEstado())) {
             this.menuGUI.btnEntradaSalida.setVisible(false); // Ocultar entrada/salida mientras está en cocina
             // Mostrar solo el botón para finalizar 
             this.menuGUI.btnRegistrarUsoCocina.setVisible(false);
             this.menuGUI.btnFinalizarUsoCocina.setVisible(true);
             this.menuGUI.btnSolicitarBotellon_DepositarBotello.setVisible(false);
         }
-        else if ("Pendiente".equals(MenuDOU.getEstadoNotificacio())) {
+        else if ("Pendiente".equals(NotificacionesDOU.getEstado_notificaciones())){
             this.menuGUI.btnEntradaSalida.setVisible(false); // Ocultar entrada/salida mientras está en cocina
             // Mostrar solo el botón para finalizar 
             this.menuGUI.btnRegistrarUsoCocina.setVisible(false);
             this.menuGUI.btnFinalizarUsoCocina.setVisible(false);
             this.menuGUI.btnSolicitarBotellon_DepositarBotello.setVisible(false);
+            
         }
     }
-
-    
+ 
     @Override
 public void actionPerformed(ActionEvent e) {
     try {
         Object source = e.getSource();
 
         if (source == menuGUI.btnEntradaSalida) {
+            
             handleEntradaSalidaAction();
         } else if (source == menuGUI.btnRegistrarUsoCocina) {
             handleRegistrarCocinaAction();
@@ -126,17 +136,20 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
     if ("Registrar entrada".equals(buttonText)) {
          if (mostrarDialogoConfirmacion("¿Deseas registrar la entrada?")) {
             
-                    MenuDOU.registrarEntrada();  
+                    MenuDOU.registrarEntrada();
+                    actualizarEstadoBotones();
                     HomeStudentGUI hsgui = new HomeStudentGUI();
                     HomeCTRL homeCTRL = new HomeCTRL(hsgui);
                     menuGUI.setVisible(false);
                     menuGUI.dispose();
                     hsgui.setVisible(true);
+                    
         }
     } else if ("Registrar salida".equals(buttonText)) {
         if (mostrarDialogoConfirmacion("¿Deseas registrar la salida?")) {
             
                     MenuDOU.registrarSalida();  
+                    actualizarEstadoBotones();
                     HomeStudentGUI hsgui = new HomeStudentGUI();
                     HomeCTRL homeCTRL = new HomeCTRL(hsgui);
                     menuGUI.setVisible(false);
@@ -145,7 +158,7 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
         }
     }
 
-    actualizarEstadoBotones();
+   // actualizarEstadoBotones();
 }
 
     private void handleRegistrarCocinaAction()throws FileNotFoundException {
@@ -154,7 +167,7 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
         if ("Solicitar uso cocina".equals(buttonText)) {
             if (mostrarDialogoConfirmacion("¿Deseas solicitar el uso de la cocina?")) {
                     MenuDOU.registrarUsoCocina();
-                     
+                     actualizarEstadoBotones();
                     HomeStudentGUI hsgui = new HomeStudentGUI();
                     HomeCTRL homeCTRL = new HomeCTRL(hsgui);
                     menuGUI.setVisible(false);
@@ -163,7 +176,7 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
             }
         }
 
-        actualizarEstadoBotones();
+       // actualizarEstadoBotones();
     } 
     
     private void handleFinalizarUsoCocinaAction()throws FileNotFoundException {
@@ -173,7 +186,7 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
            if (mostrarDialogoConfirmacion("¿Deseas finalizar el uso de la cocina?")) {
                 System.out.println("llamando a finalizar uso cocina");
                     MenuDOU.finalizaUsoCocina();
-                     
+                     actualizarEstadoBotones();
                     HomeStudentGUI hsgui = new HomeStudentGUI();
                     HomeCTRL homeCTRL = new HomeCTRL(hsgui);
                     menuGUI.setVisible(false);
@@ -182,7 +195,7 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
         }
         }
 
-        actualizarEstadoBotones();
+       // actualizarEstadoBotones();
     } 
     
     
@@ -192,7 +205,8 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
     if ("Solicitar botellon".equals(buttonText)) {
          if (mostrarDialogoConfirmacion("¿Deseas solicitar un botellon?")) {
             
-                    MenuDOU.SolicitarBotellon();  
+                    MenuDOU.SolicitarBotellon();
+                    actualizarEstadoBotones();
                     HomeStudentGUI hsgui = new HomeStudentGUI();
                     HomeCTRL homeCTRL = new HomeCTRL(hsgui);
                     menuGUI.setVisible(false);
@@ -203,6 +217,7 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
         if (mostrarDialogoConfirmacion("¿Deseas depositar botellon?")) {
             
                     MenuDOU.DepocitarBotellon();  
+                    actualizarEstadoBotones();
                     HomeStudentGUI hsgui = new HomeStudentGUI();
                     HomeCTRL homeCTRL = new HomeCTRL(hsgui);
                     menuGUI.setVisible(false);
@@ -213,7 +228,7 @@ private void handleEntradaSalidaAction() throws FileNotFoundException {
         
     }
 
-    actualizarEstadoBotones();
+   // actualizarEstadoBotones();
 }
     
 

@@ -4,6 +4,7 @@ package Controler.HomeCTRL;
 // Clase controlado del Home
 
 import Controler.MenuCTRL.MenuCTRL;
+import Model.MenuDOU.MenuDOU;
 import View.HomeStudentGUI;
 import Model.RegistroMatricula.HomeDOU;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import javax.swing.JTextField;
 import View.MenuGUI;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import Model.EstudianteModel.EstudianteModel;
 
 
 public class HomeCTRL implements ActionListener{
@@ -23,11 +25,10 @@ public class HomeCTRL implements ActionListener{
     
     HomeStudentGUI vistaHome = new HomeStudentGUI();
     HomeDOU homeDOU = new HomeDOU();
+    MenuDOU mdou = new MenuDOU();
     
     MenuGUI menuGUI = new MenuGUI();
-    
-    
-    
+
     private final JTextField matricula;
     
 
@@ -51,11 +52,7 @@ public class HomeCTRL implements ActionListener{
         this.matricula = this.vistaHome.txtMatricula;
         System.out.println("Botones cargados");
     }
-    
-    
-
-
-    
+  
     @Override
 public void actionPerformed(ActionEvent e) {
     Object source = e.getSource();
@@ -105,6 +102,7 @@ private void validarYEntrar() {
 
         if (validarMatricula) {
             // Abrir pantalla del menú
+            // set mtricula en la clase estudiante 
             menuGUI.setVisible(true);
             new MenuCTRL(menuGUI); // Crear el controlador del menú
             vistaHome.dispose();   // Cerrar la pantalla actual

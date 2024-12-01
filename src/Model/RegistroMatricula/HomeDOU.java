@@ -8,23 +8,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import Model.EstudianteModel.EstudianteModel;
 
 public class HomeDOU {
-    //definimos los atributos
-    public static int matricula;
-
-    public static int getMatricula() {
-        return matricula;
-    }
-
-    public static void setMatricula(int matricula) {
-        HomeDOU.matricula = matricula;
-    }
     
-    //metodo que validad la entrada
-    // resive un parametro tipo String
-    // retorna un true or false
-
+    
+    
     public HomeDOU() {
     }
        
@@ -50,8 +39,18 @@ public class HomeDOU {
                 try (ResultSet resultSet = callableStatement.getResultSet()) {
                     if (resultSet.next()) {
                         int matriculaObtenida = resultSet.getInt("Matricula");
-                        setMatricula(matriculaObtenida);
-                        System.out.println("Matrícula encontrada: " + matriculaObtenida);
+                        String nombre = resultSet.getString("Nombres");
+                        String apellido = resultSet.getString("Apellido");
+                        String estado = resultSet.getString("Estado_estudiante");
+                        EstudianteModel.setMatricula(matricula);
+                        EstudianteModel.setNombre(nombre);
+                        EstudianteModel.setEstado(estado);
+                        EstudianteModel.setApellido(apellido);
+                        System.out.println("Nombre: " + nombre );
+                        System.out.println("Nombre: " + apellido );
+                        System.out.println("Matricula: " + matricula );
+                        System.out.println("Estado: " + estado );
+                        
                         return true;
                     } else {
                         System.out.println("La matrícula ingresada no es correcta.");
@@ -75,7 +74,7 @@ public class HomeDOU {
             return false;
         }
     }
-
+    
 
 
     
