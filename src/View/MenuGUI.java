@@ -56,11 +56,6 @@ public class MenuGUI extends javax.swing.JFrame {
         btnEntradaSalida.setBorder(null);
         btnEntradaSalida.setBorderPainted(false);
         btnEntradaSalida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEntradaSalida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntradaSalidaActionPerformed(evt);
-            }
-        });
         jpContenedor.add(btnEntradaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 340, 70));
 
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
@@ -89,7 +84,7 @@ public class MenuGUI extends javax.swing.JFrame {
         btnFinalizarUsoCocina.setForeground(new java.awt.Color(255, 255, 255));
         btnFinalizarUsoCocina.setText("Finalizar uso cocina");
         btnFinalizarUsoCocina.setBorder(null);
-        btnFinalizarUsoCocina.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        btnFinalizarUsoCocina.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpContenedor.add(btnFinalizarUsoCocina, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 340, 70));
 
         jLabel2.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
@@ -177,10 +172,6 @@ public class MenuGUI extends javax.swing.JFrame {
     public void setJbNombre(JLabel jbNombre) {
         this.jbNombre = jbNombre;
     }
-
-    private void btnEntradaSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaSalidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEntradaSalidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

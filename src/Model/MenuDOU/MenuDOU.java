@@ -20,7 +20,7 @@ public class MenuDOU {
     // METODO PARA OTENER EL ESTADO DE LA NOTIFICACIONE
 
       public static boolean registrarEntrada() throws FileNotFoundException{
-        System.out.println("obteniendo estado.. ");
+        
         String SQL_REGISTRARENTRADA = "{CALL registraentrada(?)}";
         try(Connection conexion = ConexionDB.getConexion();
                 CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRARENTRADA)){
@@ -52,7 +52,7 @@ public class MenuDOU {
     }
       
     public static boolean registrarSalida() throws FileNotFoundException{
-        System.out.println("obteniendo estado.. ");
+        
         String SQL_REGISTRARENTRADA = "{CALL registrasalida(?)}";
         try(Connection conexion = ConexionDB.getConexion();
                 CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRARENTRADA)){
@@ -90,7 +90,7 @@ public class MenuDOU {
     // solicitar uso de la cocina
     
         public static boolean registrarUsoCocina() throws FileNotFoundException {
-        String SQL_REGISTRAR_USO_COCINA = "{CALL RegistrarUsoCocina(?)}";
+        String SQL_REGISTRAR_USO_COCINA = "{CALL solicitarCocina(?)}";
 
         try (Connection conexion = ConexionDB.getConexion();  // Conexión automática usando try-with-resources
              CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRAR_USO_COCINA)) {
@@ -176,14 +176,12 @@ public class MenuDOU {
       
       
       
-       public static boolean DepocitarBotellon() throws FileNotFoundException{
-        System.out.println("Depocitando Botellon");
-        String SQL_REGISTRARENTRADA = "{CALL depositoBotellones(?)}";
+       public static boolean DepositarBotellon() throws FileNotFoundException{
+        //System.out.println("Depocitando Botellon");
+        String SQL_REGISTRARENTRADA = "{CALL SolicitarDepositoBotellones(?)}";
         try(Connection conexion = ConexionDB.getConexion();
                 CallableStatement statement = (CallableStatement) conexion.prepareCall(SQL_REGISTRARENTRADA)){
             
-          
-             
             // Establecer el valor del parámetro de entrada
             int mat =  EstudianteModel.getMatricula();
             System.out.println(mat);
@@ -192,6 +190,7 @@ public class MenuDOU {
 
             // Ejecutar el procedimiento
             statement.execute();
+            System.out.println("Depocitando Botellonb EXITOSA");
             return true;
             
             // Cerrar recursos

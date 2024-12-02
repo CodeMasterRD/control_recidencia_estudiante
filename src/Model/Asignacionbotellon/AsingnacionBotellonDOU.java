@@ -1,21 +1,27 @@
 
-package Model.Notificaciones;
+package Model.Asignacionbotellon;
 
 import Model.ConexionDB;
 import Model.EstudianteModel.EstudianteModel;
+import Model.Notificaciones.NotificacionModel;
 import com.mysql.cj.jdbc.CallableStatement;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-public class NotificacionesDOU {
+import Model.Asignacionbotellon.AsignacionBotellonModel;
+
+
+public class AsingnacionBotellonDOU {
     
     
     
-    // METODO PARA OTENER EL ESTADO DE LA NOTIFICACIONE
-    public static void getEstadoNotificacio() throws FileNotFoundException{
-//        System.out.println("obteniendo estado notificacion.. ");
-        String PSQL_GET_ESTADO = "{CALL obtenerEstadoNotificacion(?)}";
+    // METODO PARA OTENER EL ESTADO DEL de la tabla asignacion botellon
+    // devuelve el estado de la asinacion con respecto a la habitacion,
+    // resibe como parametro de entra la matricula para busca la Habitacion de ese estudiante
+    public static void getEstadoBotellon() throws FileNotFoundException{
+        System.out.println("obteniendo estado notificacion.. ");
+        String PSQL_GET_ESTADO = "{CALL BuscarEstadoBotellon(?)}";
         try(Connection conexion = ConexionDB.getConexion();
                 CallableStatement statement = (CallableStatement) conexion.prepareCall(PSQL_GET_ESTADO)){
             
@@ -23,7 +29,8 @@ public class NotificacionesDOU {
              
             // Establecer el valor del parámetro de entrada
             int mat =  EstudianteModel.getMatricula();
-            
+           // System.out.println("Mat para el estado notificacion");
+            // System.out.println(mat);
             statement.setInt(1, mat);
             
 
@@ -32,14 +39,10 @@ public class NotificacionesDOU {
                     ResultSet resultSet = statement.executeQuery()) {
                 // Procesar los resultados
                 while (resultSet.next()) {
-                    String estadoActual = resultSet.getString("Estado_notificacion");
-                    String tipo = resultSet.getString("Tipo_notificacion");
-                    
-                    NotificacionModel.setEstado_notificaciones(estadoActual);
-//                    System.out.println("Estado Notificacion " +  estadoActual);
-                    
-                    NotificacionModel.setTipo_noteficacion(tipo);
-//                    System.out.println("Tipo Notificacion " +  tipo);
+                    String estadoActual = resultSet.getString("Estado_botellon");
+
+                    AsignacionBotellonModel.setEstadoBotellon(estadoActual);// setea el estado del botellon
+                    System.out.println("Estado Botelon" +  estadoActual);
                     
                 }
                 // Cerrar recursos
@@ -57,5 +60,6 @@ public class NotificacionesDOU {
         }
         
     }
-
+    
+    
 }

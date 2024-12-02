@@ -17,9 +17,6 @@ public class HomeDOU {
     public HomeDOU() {
     }
        
-   
-
-
 
     public static boolean validarMatricula(int matricula) throws SQLException, FileNotFoundException {
         String SQL = "{CALL validarMatriculaEstudiante(?)}";
