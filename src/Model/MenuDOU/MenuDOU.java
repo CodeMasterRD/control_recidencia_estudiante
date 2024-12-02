@@ -8,8 +8,10 @@ import Model.RegistroMatricula.HomeDOU;
 import com.mysql.cj.jdbc.CallableStatement;
 import Model.EstudianteModel.EstudianteModel;
 import Model.Notificaciones.NotificacionesDOU;
+import javax.swing.JOptionPane;
+import View.MenuGUI;
 public class MenuDOU {
-    
+    MenuGUI menuGUI = new MenuGUI();
     
     
     public MenuDOU() {
@@ -89,7 +91,7 @@ public class MenuDOU {
     
     // solicitar uso de la cocina
     
-        public static boolean registrarUsoCocina() throws FileNotFoundException {
+        public static boolean registrarUsoCocina() throws FileNotFoundException{
         String SQL_REGISTRAR_USO_COCINA = "{CALL solicitarCocina(?)}";
 
         try (Connection conexion = ConexionDB.getConexion();  // Conexión automática usando try-with-resources
@@ -107,7 +109,8 @@ public class MenuDOU {
         } catch (SQLException e) {
             // Manejar errores de SQL
             if ("45000".equals(e.getSQLState())) {
-                System.out.println("Error personalizado: " + e.getMessage());
+            
+                // JOptionPane.showMessageDialog("Error al realizar la operación: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 System.out.println("Error inesperado: " + e.getMessage());
             }

@@ -227,7 +227,7 @@ private void configurarBotones(
 public void actionPerformed(ActionEvent e) {
     try {
         Object source = e.getSource();
-        System.out.println("---Action---");
+        System.out.println("--------------------------------------------Action--------------------------------");
 
         if (source == menuGUI.btnEntradaSalida) {
             System.out.println("entro");
